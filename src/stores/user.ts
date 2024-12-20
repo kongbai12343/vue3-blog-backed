@@ -1,29 +1,30 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import type { UserInfo } from '@/types/user'
+import { defineStore } from "pinia"
+import type { LoginResult } from "@/types/user"
 
-export const useUserStore = defineStore('user', () => {
-  const userInfo = ref<UserInfo | null>(null)
-  const token = ref<string>('')
+export const useUserStore = defineStore("user", {
+	persist: {
+		storage: localStorage,
+	},
 
-  function setUserInfo(info: UserInfo) {
-    userInfo.value = info
-  }
+	state: (): LoginResult => {
+		return {
+			token: "",
+			userInfo: null,
+		}
+	},
 
-  function setToken(newToken: string) {
-    token.value = newToken
-  }
+	actions: {
+		setUserInfo(info: UserInfo) {
+			this.userInfo = info
+		},
 
-  function logout() {
-    userInfo.value = null
-    token.value = ''
-  }
+		setToken(newToken: string) {
+			this.token = newToken
+		},
 
-  return {
-    userInfo,
-    token,
-    setUserInfo,
-    setToken,
-    logout,
-  }
+		logout() {
+			this.userInfo = null
+			this.token = ""
+		},
+	},
 })

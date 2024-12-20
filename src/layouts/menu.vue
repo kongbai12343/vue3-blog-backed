@@ -25,11 +25,11 @@
 					<el-icon><ChatDotSquare /></el-icon>
 					<span>评论管理</span>
 				</el-menu-item>
-				<el-menu-item index="/comment">
+				<el-menu-item index="/category">
 					<el-icon><Dish /></el-icon>
 					<span>分类管理</span>
 				</el-menu-item>
-				<el-menu-item index="/comment">
+				<el-menu-item index="/tag">
 					<el-icon><PriceTag /></el-icon>
 					<span>标签管理</span>
 				</el-menu-item>

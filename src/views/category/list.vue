@@ -1,7 +1,7 @@
 <script lang="ts"></script>
 
 <template>
-	<div>article</div>
+	<div>category</div>
 </template>
 
 <style lang="scss" scoped></style>

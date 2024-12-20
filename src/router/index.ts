@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import type { RouteRecordRaw } from "vue-router"
+import { getToken } from "@/utils/getToken"
 
 const routes: RouteRecordRaw[] = [
 	{
@@ -39,7 +40,33 @@ const routes: RouteRecordRaw[] = [
 					title: "评论管理",
 				},
 			},
+			{
+				path: "category",
+				name: "category",
+				component: () => import("@/views/category/list.vue"),
+				meta: {
+					title: "分类管理",
+				},
+			},
+			{
+				path: "tag",
+				name: "tag",
+				component: () => import("@/views/tag/list.vue"),
+				meta: {
+					title: "标签管理",
+				},
+			},
 		],
+	},
+	{
+		path: "/login",
+		name: "login",
+		component: () => import("@/views/login/index.vue"),
+	},
+	{
+		path: "/:pathMatch(.*)*",
+		name: "notFound",
+		component: () => import("@/views/notFound/index.vue"),
 	},
 ]
 
@@ -48,10 +75,15 @@ const router = createRouter({
 	routes,
 })
 
-router.beforeEach((to, _, next) => {
+router.beforeEach((to, _) => {
 	// 设置页面标题
 	document.title = (to.meta.title as string) || ""
-	next()
+
+	// 登录校验
+	const token = getToken()
+	if (!token && to.path !== "/login") {
+		return "/login"
+	}
 })
 
 export default router

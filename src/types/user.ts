@@ -1,16 +1,16 @@
 export interface UserInfo {
-  id: number
-  username: string
-  email: string
-  avatar?: string
+	id: number
+	username: string
+	state: string
+	avatar?: string
 }
 
 export interface LoginParams {
-  username: string
-  password: string
+	username: string
+	password: string
 }
 
 export interface LoginResult {
-  token: string
-  userInfo: UserInfo
+	token: string
+	userInfo: UserInfo
 }
